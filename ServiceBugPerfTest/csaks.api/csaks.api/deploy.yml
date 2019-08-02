@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: csaks-api
+    aadpodidbinding: demo-kv-access
+  name: csaks-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: csaks-api
+        aadpodidbinding: demo-kv-access
+    spec:
+      containers:
+      - name: csaks-api
+        image: evhcacrcs.azurecr.io/csaks.api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: acrauthcst
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: csaks-api
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: csaks-api
+  type: LoadBalancer

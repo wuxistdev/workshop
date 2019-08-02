@@ -1,0 +1,8 @@
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: pod-id-cs-az
+spec:
+  type: 0
+  ResourceID: /subscriptions/9fffc4f2-c39a-4168-bf64-0d674974ca62/resourceGroups/evhc-testgroup-cs/providers/Microsoft.ManagedIdentity/userAssignedIdentities/pod-id-cs
+  ClientID: fbdcacbb-a659-463b-9b67-a4fe6651b994
